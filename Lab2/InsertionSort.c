@@ -2,37 +2,40 @@
 #include<stdlib.h>
 #include<time.h>
 
-void insertionSort(double arr[], int length);
+void insertionSort(int arr[], int length);
 
 int main(void) {
-    srand48((unsigned int)time(NULL));
     int n;
     printf("Please enter size of array to sort\n");
     scanf("%d", &n);
-    double arr [n];
+    printf("---------------------------------------------\n");
+    int arr [n];
     //Populate the array
     for (int i = 0; i < n; i++) {
-        arr[i] = drand48();
+        printf("Please enter element %d (integer) of the array\n", i+1);
+        scanf("%d", &arr[i]);
     }
+    printf("---------------------------------------------\n");
     //Print the unsorted elements
     printf("Elements of the array:\n");
     for (int i = 0; i < n; i++) {
-        printf("%f\n", arr[i]);
+        printf("%d\n", arr[i]);
     }
+    printf("---------------------------------------------\n");
     //Sort the array
     insertionSort(arr, n);
     //Print the sorted Elements
     printf("Sorted Elements of the array:\n");
     for (int i = 0; i < n; i++) {
-        printf("%f\n", arr[i]);
+        printf("%d\n", arr[i]);
     }
 }
 
-void insertionSort(double arr[], int length) {
+void insertionSort(int arr[], int length) {
     //loop through the elements, starting with the second
     for (int j = 1; j < length; j++) {
         //the value we're trying to sort
-        double key = arr[j];
+        int key = arr[j];
         //pointer to the element before
         int i = j - 1;
         //while there is still an element to the left
