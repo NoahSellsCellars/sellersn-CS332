@@ -14,30 +14,80 @@ int arrayMin(int arr[], int size);
 
 int main(void) {
     //test functions
-    int num = 12345;
-    printf("Sum of digits of %d: %d\n", num, sumOfDigits(num));
-    int arr[] = {3, 1, 4, 1, 5, 9};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    printf("Array: [3, 1, 4, 1, 5, 9]\n");;
-    printf("Max-Min difference: %d\n", UABMaxMinDiff(arr, size));
-    int* newArr = replaceEvenWithZero(arr, size);
-    printf("Array with even numbers replaced by 0: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", newArr[i]);
+    printf("--- Testing sumOfDigits ---\n");
+    printf("Input: n = 123, Expected: 6, Output: %d\n", sumOfDigits(123));
+    printf("Input: n = 405, Expected: 9, Output: %d\n", sumOfDigits(405));
+    printf("Input: n = 0, Expected: -1, Output: %d\n", sumOfDigits(0));
+    printf("Input: n = 7, Expected: 7, Output: %d\n", sumOfDigits(7));
+    printf("Input: n = -308, Expected: -1, Output: %d\n\n", sumOfDigits(-308));
+
+    printf("--- Testing UABMaxMinDiff ---\n");
+    int arr1[] = {3, 7, 2, 9};
+    int arr2[] = {5, 5, 5, 5, 5, 5, 5};
+    int arr3[] = {-2, 4, -1, 6, 5};
+    printf("Input: arr = [3,7,2,9], Expected: 7, Output: %d\n", UABMaxMinDiff(arr1, 4));
+    printf("Input: arr = [5,5,5,5,5,5,5], Expected: 0, Output: %d\n", UABMaxMinDiff(arr2, 7));
+    printf("Input: arr = [-2,4,-1,6,5], Expected: 8, Output: %d\n\n", UABMaxMinDiff(arr3, 5));
+
+    printf("--- Testing replaceEvenWithZero ---\n");
+    int arr4[] = {1, 2, 3, 4};
+    int arr5[] = {2, 4, 6};
+    int arr6[] = {1, 3, 5};
+    int *result4 = replaceEvenWithZero(arr4, 4);
+    int *result5 = replaceEvenWithZero(arr5, 3);
+    int *result6 = replaceEvenWithZero(arr6, 3);
+    printf("Input: arr = [1,2,3,4], Expected: [1, 0, 3, 0] Output: [");
+    for (int i = 0; i < 4; i++) {
+        if (result4 != NULL) {
+            printf("%d", result4[i]);
+            if (i < 3) printf(", ");
+        }
     }
-    printf("\nIs %d a perfect square? %s\n", 16, perfectSquare(16) ? "Yes" : "No");
-    printf("Is %d a perfect square? %s\n", 12, perfectSquare(12) ? "Yes" : "No");
-    char str[] = "Hello World";
-    printf("Number of vowels in \"%s\": %d\n", str, countVowels(str));
-    free(newArr);
+    printf("]\n");
+    printf("Input: arr = [2,4,6], Expected: [0, 0, 0] Output: [");
+    for (int i = 0; i < 3; i++) {
+        if (result5 != NULL) {
+            printf("%d", result5[i]);
+            if (i < 2) printf(", ");
+        }
+    }
+    printf("]\n");
+    printf("Input: arr = [1,3,5], Expected: [1, 3, 5] Output: [");
+     for (int i = 0; i < 3; i++) {
+        if (result6 != NULL) {
+            printf("%d", result6[i]);
+            if (i < 2) printf(", ");
+        }
+    }
+    printf("]\n");
+    if (result4 != NULL) free(result4);
+    if (result5 != NULL) free(result5);
+    if (result6 != NULL) free(result6);
+
+    printf("--- Testing perfectSquare ---\n");
+    printf("Input: n = 16, Expected: True, Output: %s\n", perfectSquare(16) ? "True" : "False");
+    printf("Input: n = 15, Expected: False, Output: %s\n", perfectSquare(15) ? "True" : "False");
+    printf("Input: n = 25, Expected: True, Output: %s\n", perfectSquare(25) ? "True" : "False");
+    printf("Input: n = 36, Expected: True, Output: %s\n\n", perfectSquare(36) ? "True" : "False");
+
+    printf("--- Testing countVowels ---\n");
+    char s1[] = "Hello World";
+    char s2[] = "UAB CS";
+    char s3[] = "Python";
+    char s4[] = "aeiou";
+    printf("Input: s = \"Hello World\", Expected: 3, Output: %d\n", countVowels(s1));
+    printf("Input: s = \"UAB CS\", Expected: 2, Output: %d\n", countVowels(s2));
+    printf("Input: s = \"Python\", Expected: 1, Output: %d\n", countVowels(s3));
+    printf("Input: s = \"aeiou\", Expected: 5, Output: %d\n\n", countVowels(s4));
+
     return 0;
 }
 
 int sumOfDigits(int n) {
     //Takes a positive integer and returns
     //the sum of its digits ex. 23 = 2+3 = 5
-    if (n < 0) {
-        n = -n;
+    if (n <= 0) {
+        return -1;
     }
     int sum = 0;
     while (n > 0) {
@@ -111,6 +161,7 @@ int countVowels(char s[]) {
 }
 
 int arrayMax(int arr[], int size) {
+    //Helper function to find max in an array
     if (size <= 0) {
         return 0;
     }
@@ -124,6 +175,7 @@ int arrayMax(int arr[], int size) {
 }
 
 int arrayMin(int arr[], int size) {
+    //Helper function to find min in an array
     if (size <= 0) {
     return 0;
     }
