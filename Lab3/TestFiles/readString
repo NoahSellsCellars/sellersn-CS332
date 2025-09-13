@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+char ** readStrings(void) {
+    //TODO: get the number of strings to sort
+    printf("Please enter the number of strings to sort (limit 999):\n");
+    int count;
+    int digitsOfNumOfStrings = 3;
+    //Limit of 999 strings
+    fgets(count, digitsOfNumOfStrings, stdin);
+    if(count <= 1) {
+        printf("Invalid number of strings!\n");
+        return NULL;
+    }
+    //TODO: allocate memory for the array of pointers to the strings
+    char** stringArray;
+    stringArray = (char **)malloc(sizeof(char *) * count);
+    if (stringArray == NULL) {
+        printf("Memory allocation for string array failed");
+        return NULL;
+    }
+    //TODO: read the strings
+    printf("Please enter %d strings", count);
+    for (int i = 0; i < count; i++) {
+        //for each string, store it in a temporary buffer, determine the size,
+        //allocate the memory for it, add the pointer to the string to the array of pointers
+        char tempBuffer[101];
+        fgets(tempBuffer, 100, stdin);
+        //change the \n to a \0
+        tempBuffer[strcspn(tempBuffer, "\n")] = "\O";
+
+        //determine the length
+        int length = strlen(tempBuffer);
+        char *string;
+        string = (char *)malloc((length + 1) * sizeof(char));
+        if (string == NULL) {
+            printf("Allocation for string %d failed!", i);
+            return NULL;
+        }
+        stringArray[i] = &string;
+    }
+
+
+}
