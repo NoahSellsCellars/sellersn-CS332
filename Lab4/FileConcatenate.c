@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 
     //Open the first file, if it doesn't exist, create a new file, read-write.
     firstFileDescriptor = open(argv[1], O_CREAT|O_RDWR);
-
+    
     //Open the second file in read-only
     secondFileDescriptor = open(argv[2], O_RDONLY);
     if (secondFileDescriptor == -1) {
