@@ -21,12 +21,9 @@ struct options{
     int depth;
 };
 
-typedef void PRINT_FUNC(char* filepath, struct options options, struct stat statbuf, int* depth);
-
 void print_dir_contents(char* filepath, struct options options, int* depth);
 void print_detailed_entry(char* filepath, struct options options, struct stat statbuf, int* depth);
 void print_simple_entry(char* filepath, struct options options, struct stat statbuf, int* depth);
-void print_detail(char* filepath, struct options options, struct stat statbuf, int* depth, PRINT_FUNC *f);
 
 int main(int argc, char** argv) {
     struct options options;
@@ -109,10 +106,10 @@ void print_dir_contents(char* filepath, struct options options, int* depth) {
 
     //Print the basename of the directory and, if required, its info
     if (options.S_flag) {
-        print_detail(filepath, options, statbuf, depth, print_detailed_entry);
+        print_detailed_entry(filepath, options, statbuf, depth);
     }
     else {
-        print_detail(filepath, options, statbuf, depth, print_simple_entry);
+        print_simple_entry(filepath, options, statbuf, depth);
     }
 
     //Open the directory
@@ -294,9 +291,5 @@ void print_simple_entry(char* filepath, struct options options, struct stat stat
     printf("\n");
 
     free(path_copy);
-}
-
-void print_detail(char* filepath, struct options options, struct stat statbuf, int* depth, PRINT_FUNC *f) {
-    f(filepath, options, statbuf, depth);
 }
 

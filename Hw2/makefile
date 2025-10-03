@@ -1,4 +1,4 @@
-TARGET = FileConcatenate
+TARGET = Hw2
 
 SRC = $(TARGET).c
 
