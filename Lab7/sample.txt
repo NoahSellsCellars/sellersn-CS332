@@ -1,0 +1,6 @@
+uname -a
+pwd
+ls -l
+echo Hello, from the C program!
+sleep 1
+date
