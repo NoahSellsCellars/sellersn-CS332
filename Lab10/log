@@ -1,0 +1,6 @@
+uname -a	Wed Nov  5 01:02:14 2025	Wed Nov  5 01:02:14 2025
+pwd	Wed Nov  5 01:02:14 2025	Wed Nov  5 01:02:14 2025
+ls -l	Wed Nov  5 01:02:14 2025	Wed Nov  5 01:02:14 2025
+echo Hello, from the C program!	Wed Nov  5 01:02:14 2025	Wed Nov  5 01:02:14 2025
+sleep 1	Wed Nov  5 01:02:14 2025	Wed Nov  5 01:02:15 2025
+date	Wed Nov  5 01:02:15 2025	Wed Nov  5 01:02:15 2025
