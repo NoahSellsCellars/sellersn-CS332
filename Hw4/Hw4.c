@@ -12,7 +12,7 @@
 *   -Child Process and Thread Creation                                        *
 *   -Output redirection                                                       *
 *                                                                             *
-*  To Compile: gcc -Wall -O -o Hw4 Hw4.c                                      *
+*  To Compile: gcc -Wall -O -o Hw4 Hw4.c -lpthread                            *
 *  To run: ./Hw4                                                              *
 *                                                                             *
 *  Author: Noah Sellers                                                       *
@@ -84,7 +84,7 @@ void *gen_nums(void *arg) {
             exit(EXIT_FAILURE);
         }
         pthread_mutex_unlock(write_mutex);     //unlock
-        sem_post(full_slots);    //Signal that there's now an empty slot
+        sem_post(full_slots);    //Signal that there's now a full slot
     }
 
     printf("Thread completed (%ld)\n", global_id);
@@ -215,11 +215,11 @@ int main(int argc, char* argv[]){
         pthread_mutex_init(&read_mutex, NULL); 
 
         //Create an array for the sums each thread will return
-        int i;
         long long sums[NUM_CONSUMER];
         //Create 20 consumer threads
         pthread_t consumer_threads[NUM_CONSUMER];
-            
+        
+        int i;
         for (i = 0; i < NUM_CONSUMER; i++) {
             struct thread_args *thread_args = malloc(sizeof(struct thread_args));
             thread_args->thread_id = i;
