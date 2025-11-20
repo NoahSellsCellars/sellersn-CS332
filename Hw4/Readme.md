@@ -64,11 +64,23 @@ This project demonstrates practical application of the following CS topics:
 
 -----
 
-## 🚀 How to Run
+## How to Run
 
 ### 1\. Compile
 
-You must link the POSIX threads library (`-lpthread`) for the program to compile correctly.
+You can compile the program using the provided `Makefile` or by running the `gcc` command manually.
+
+**Method 1: Using the Makefile (Recommended)**
+
+Simply run the `make` command to build the executable:
+
+```bash
+make
+```
+
+**Method 2: Compiling Manually (Alternative)**
+
+If you do not use the `Makefile`, you must manually link the POSIX threads library (`-lpthread`):
 
 ```bash
 gcc -Wall -O -o Hw4 Hw4.c -lpthread
@@ -76,15 +88,17 @@ gcc -Wall -O -o Hw4 Hw4.c -lpthread
 
 ### 2\. Run
 
-Execute the compiled binary:
+After compiling, execute the binary:
 
 ```bash
 ./Hw4
 ```
 
+(You can also use `make run` which compiles and runs the program in one step).
+
 -----
 
-## 📋 Expected Output
+## Expected Output
 
 When you run the program, you will see two things:
 
